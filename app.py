@@ -3,7 +3,6 @@ from models.user import User
 from database import db
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 import bcrypt
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "yor_secret_key"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:admin123@127.0.0.1:3306/flask-crud'
@@ -54,7 +53,6 @@ def create_user():
         db.session.add(user)
         db.session.commit()
         return jsonify({"mesasge": "Usuários cadastrados com sucesso"})
-
     return jsonify({"mesasge": "Dados invalidos"}), 400
 
 @app.route('/user/<int:id_user>', methods=["GET"])
@@ -66,7 +64,6 @@ def read_user(id_user):
         return {"username": user.username}
     
     return jsonify({"message": "Usuário não encontrado"}), 404
-
 
 @app.route('/user/<int:id_user>', methods=["PUT"])
 @login_required
